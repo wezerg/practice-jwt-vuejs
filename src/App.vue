@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import * as jose from 'jose';
+import axios from 'axios';
 
     const title = ref('Hello World !');
     const compteur = ref(0);
@@ -15,6 +16,7 @@ import * as jose from 'jose';
     const token = ref("");
     const tokenDecoded = ref("");
     const tokenSaved = ref("");
+    const tokenFromAPI = ref("");
     function decodeToken(){
         if (token.value) {
             const claims = jose.decodeJwt(token.value);
@@ -30,6 +32,14 @@ import * as jose from 'jose';
     if (localStorage.getItem('cours-token')) {
         tokenSaved.value = localStorage.getItem('cours-token');
     }
+    async function getTokenFromAPI(){
+        if (tokenSaved.value) {
+            const instance = axios.create({headers: {"X-Auth-Token": tokenSaved.value}});
+            const response = await instance.post('http://localhost:3001/loginToken').then(res => res).catch(err => err);
+            tokenFromAPI.value = response.request.response;
+        }
+    }
+    getTokenFromAPI();
 </script>
 
 <template>
@@ -46,6 +56,9 @@ import * as jose from 'jose';
     <hr/>
     <label>Mon token sauvegardé :</label>
     <p>{{tokenSaved}}</p>
+    <hr/>
+    <label>Mon token de l'API :</label>
+    <p>{{tokenFromAPI}}</p>
 </template>
 
 <style>
