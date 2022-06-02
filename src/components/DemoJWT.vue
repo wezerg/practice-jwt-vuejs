@@ -29,7 +29,6 @@
             tokenFromAPI.value = response.request.response;
         }
     }
-    getTokenFromAPI();
 </script>
 <template>
     <label>Décoder mon token :</label>
@@ -43,5 +42,6 @@
     <hr/>
     <label>Connexion à l'api :</label>
     <p>{{tokenFromAPI}}</p>
+    <button v-on:click="getTokenFromAPI">Envoyer token</button>
     <hr/>
 </template>
