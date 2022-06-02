@@ -5,6 +5,8 @@ import DemoJWT from '@/components/DemoJWT.vue';
 import DemoVIF from '@/components/DemoVIF.vue';
 import LoopTab from '@/components/LoopTab.vue';
 import Acceuil from '@/components/Acceuil.vue';
+import Login from '@/components/Login.vue';
+import Register from '@/components/Register.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,6 +15,16 @@ const router = createRouter({
             path: "/",
             name: "acceuil",
             component: Acceuil
+        },
+        {
+            path: "/login", 
+            name: "login",
+            component: Login
+        },
+        {
+            path: "/register", 
+            name: "register",
+            component: Register
         },
         {
             path: "/demo/compteur", 
