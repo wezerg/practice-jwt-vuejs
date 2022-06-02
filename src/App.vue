@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import * as jose from 'jose';
 
     const title = ref('Hello World !');
     const compteur = ref(0);
@@ -10,6 +11,15 @@ import { ref } from 'vue';
     function resetCompteur(){
         compteur.value = 0;
     }
+
+    const token = ref("");
+    const tokenDecoded = ref("");
+    function decodeToken(){
+        if (token.value) {
+            const claims = jose.decodeJwt(token.value);
+            tokenDecoded.value = claims;
+        }
+    }
 </script>
 
 <template>
@@ -17,6 +27,11 @@ import { ref } from 'vue';
     <p>Compteur : {{compteur}}</p>
     <input type="number" v-model="compteur">
     <button @click="resetCompteur">Reset</button>
+    <hr/>
+    <label>Décoder mon token :</label>
+    <input type="text" v-model="token">
+    <button v-on:click="decodeToken">Décodage</button>
+    <p>Mon token décodé : {{tokenDecoded}}</p>
 </template>
 
 <style>
