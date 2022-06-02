@@ -6,11 +6,16 @@ import { ref } from 'vue';
     setInterval(() => {
         compteur.value++;
     }, 1000);
+
+    function resetCompteur(){
+        compteur.value = 0;
+    }
 </script>
 
 <template>
     <h1>{{title}}</h1>
     <p>Compteur : {{compteur}}</p>
+    <button @click="resetCompteur">Reset</button>
 </template>
 
 <style>
