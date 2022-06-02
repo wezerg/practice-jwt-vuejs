@@ -14,11 +14,21 @@ import * as jose from 'jose';
 
     const token = ref("");
     const tokenDecoded = ref("");
+    const tokenSaved = ref("");
     function decodeToken(){
         if (token.value) {
             const claims = jose.decodeJwt(token.value);
             tokenDecoded.value = claims;
         }
+    }
+    function saveToken(){
+        if (token.value) {
+            localStorage.setItem('cours-token', token.value);
+            tokenSaved.value = token.value;
+        }
+    }
+    if (localStorage.getItem('cours-token')) {
+        tokenSaved.value = localStorage.getItem('cours-token');
     }
 </script>
 
@@ -31,7 +41,11 @@ import * as jose from 'jose';
     <label>Décoder mon token :</label>
     <input type="text" v-model="token">
     <button v-on:click="decodeToken">Décodage</button>
+    <button v-on:click="saveToken">Sauvegarder ce token</button>
     <p>Mon token décodé : {{tokenDecoded}}</p>
+    <hr/>
+    <label>Mon token sauvegardé :</label>
+    <p>{{tokenSaved}}</p>
 </template>
 
 <style>
