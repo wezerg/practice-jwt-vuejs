@@ -43,4 +43,5 @@
     <hr/>
     <label>Connexion à l'api :</label>
     <p>{{tokenFromAPI}}</p>
+    <hr/>
 </template>
