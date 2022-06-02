@@ -1,6 +1,4 @@
 <script setup>
-    import { ref } from 'vue';
-    const title = ref('Hello World !');
     const compteur = ref(0);
     setInterval(() => {
         compteur.value++;
@@ -11,7 +9,6 @@
     }
 </script>
 <template>
-    <h1>{{title}}</h1>
     <p>Compteur : {{compteur}}</p>
     <input type="number" v-model="compteur">
     <button @click="resetCompteur">Reset</button>
