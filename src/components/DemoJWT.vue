@@ -41,6 +41,6 @@
     <label>Mon token sauvegardé :</label>
     <p>{{tokenSaved}}</p>
     <hr/>
-    <label>Mon token de l'API :</label>
+    <label>Connexion à l'api :</label>
     <p>{{tokenFromAPI}}</p>
 </template>
