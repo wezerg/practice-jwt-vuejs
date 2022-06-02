@@ -1,6 +1,6 @@
 <script setup>
     import { useUserStore } from '@/services/userstore';
-    const user = useUserStore();
+    const {user} = useUserStore();
 </script>
 <template>
     <header>
