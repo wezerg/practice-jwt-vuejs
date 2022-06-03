@@ -7,6 +7,7 @@ import LoopTab from '@/components/LoopTab.vue';
 import Acceuil from '@/components/Acceuil.vue';
 import Login from '@/components/Login.vue';
 import Register from '@/components/Register.vue';
+import MyAccount from '@/components/MyAccount.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -51,6 +52,11 @@ const router = createRouter({
             name: "looptab",
             component: LoopTab
         },
+        {
+            path: "/myaccount",
+            name: "moncompte",
+            component: MyAccount
+        }
     ]
 });
 

@@ -43,6 +43,9 @@
                         <RouterLink class="nav-link" :to="{name: 'register'}">Register</RouterLink>
                     </li>
                     <li class="nav-item ms-auto" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'moncompte'}">Mon compte</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
                         <button class="btn btn-danger" @click="deconnexion()">Déconnexion</button>
                     </li>
                 </ul>
