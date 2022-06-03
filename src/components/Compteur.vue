@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue';
+
     const compteur = ref(0);
     setInterval(() => {
         compteur.value++;

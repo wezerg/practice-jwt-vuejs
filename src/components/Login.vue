@@ -1,29 +1,27 @@
 <script setup>
 import { useUserStore } from '@/services/userstore';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
 const {connect, user} = useUserStore();
 const router = useRouter();
+const name = ref('');
 if (user.value) {
     router.push({name: "acceuil"});
+}
+function connexion(){
+    const response = connect(name.value);
+    response && (router.push({name: "acceuil"}));
 }
 </script>
 <template>
     <h1>Login</h1>
-    <form @submit.prevent="connect()">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <form @submit.prevent="connexion()">
+        <div class="form-group mb-3">
+            <label for="loginName">Name</label>
+            <input type="text" v-model="name" class="form-control" id="loginName" placeholder="Enter name">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Connexion</button>
     </form>
 </template>
 <style>
