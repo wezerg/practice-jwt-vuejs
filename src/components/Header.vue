@@ -10,20 +10,45 @@
     }
 </script>
 <template>
-    <header>
-        <nav class="nav">
-            <h3 class="navbar brand">{{!user ? "Welcome" : `Hey ${user.name}`}}</h3>
-            <RouterLink class="nav-link active" to="/">Acceuil</RouterLink>
-            <RouterLink v-if="user" class="nav-link" :to="{name: 'compteur'}">Compteur</RouterLink>
-            <RouterLink v-if="user" class="nav-link" :to="{name: 'looptab'}">Loop</RouterLink>
-            <RouterLink v-if="user" class="nav-link" :to="{name: 'demobind'}">Binding & Submit</RouterLink>
-            <RouterLink v-if="user" class="nav-link" :to="{name: 'demovif'}">Conditionnal</RouterLink>
-            <RouterLink v-if="user" class="nav-link" :to="{name: 'demojwt'}">Token</RouterLink>
-            <RouterLink v-if="!user" class="nav-link ms-auto" :to="{name: 'login'}">Login</RouterLink>
-            <RouterLink v-if="!user" class="nav-link" :to="{name: 'register'}">Register</RouterLink>
-            <button class="btn btn-danger ms-auto" v-if="user" @click="deconnexion()">Déconnexion</button>
-        </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <h3 class="navbar-brand">{{!user ? "Welcome" : `Hey ${user.name}`}}</h3>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" style="flex-grow: 1;">
+                    <li class="nav-item">
+                        <RouterLink class="nav-link active" to="/">Acceuil</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'compteur'}">Compteur</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'looptab'}">Loop</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'demobind'}">Binding & Submit</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'demovif'}">Conditionnal</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="user">
+                        <RouterLink class="nav-link" :to="{name: 'demojwt'}">Token</RouterLink>
+                    </li>
+                    <li class="nav-item ms-auto" v-if="!user">
+                        <RouterLink class="nav-link" :to="{name: 'login'}">Login</RouterLink>
+                    </li>
+                    <li class="nav-item" v-if="!user">
+                        <RouterLink class="nav-link" :to="{name: 'register'}">Register</RouterLink>
+                    </li>
+                    <li class="nav-item ms-auto" v-if="user">
+                        <button class="btn btn-danger" @click="deconnexion()">Déconnexion</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>
 <style scoped>
 </style>
