@@ -15,6 +15,9 @@
 
     async function getAccountInfo(){
         const response = await axios.post('http://localhost:3001/moncompte').then(res => res).catch(err => err);
+        if (response.status !== 200) {
+            return null;
+        }
         user.value = response.data.user;
     }
     onMounted(() => {

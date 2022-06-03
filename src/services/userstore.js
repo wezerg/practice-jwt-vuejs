@@ -1,14 +1,25 @@
+import axios from "axios";
 import { ref } from "vue";
+
+axios.interceptors.response.use(function (response) {
+    console.log(response)
+    /*console.log(response.config.headers['x-auth-token']);
+    localStorage.setItem('cours-token', response.config.headers['x-auth-token']);*/
+    return response;
+});
 
 const user = ref(null);
 
 function useUserStore(){
     return {user, connect, disconnect};
 }
-function connect(name){
-    if (name) {
-        localStorage.setItem('cours-user-name', name);
-        return user.value = {name};
+async function connect(email, password){
+    if (email && password) {
+        const response = await axios.post('http://localhost:3001/login', {"email": email,"password": password}).then(res => res).catch(err => err);
+        if (response.status !== 200) {
+            return null;
+        }
+        return user.value = response.data;
     }
     else{
         return null;
